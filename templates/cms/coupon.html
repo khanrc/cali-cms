@@ -1,0 +1,17 @@
+{% extends 'cms/base.html' %}
+
+{% block menu_coupon_selected %}now{% endblock %}
+
+{% block main %}
+<h1>쿠폰 발급</h1>
+
+<form method="post" action="{% url 'cms:coupon_issue' %}">
+	{% csrf_token %}
+	<dl>
+		<dt><label for="amount">수량</label></dt>
+		<dd><input type="text" id="amount" name="amount" required="required" value="1" /></dd>
+	</dl>
+	<input type="submit" value="발급" />
+</form>
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>캘리 CMS</title>
+<link rel="stylesheet" type="text/css" href="{% static 'cms/base.css' %}" />
+<style type="text/css">
+/*<![CDATA[*/
+{% block css %}{% endblock %}
+/*]]>*/
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'cms/common.js' %}"></script>
+<script type="text/javascript">
+//<![CDATA[
+{% block js %}{% endblock %}
+//]]>
+</script>
+</head>
+
+<body>
+
+<div id="container">
+
+	<div id="header">
+{% block header %}{% endblock %}
+	</div><!-- header -->
+
+	<div id="menu">
+		<ul>
+			<li class="{% block menu_coupon_selected %}{% endblock %}"><a href="{% url 'cms:coupon' %}">쿠폰 발급</a></li>
+			<li class="{% block menu_push_selected %}{% endblock %}"><a href="{% url 'cms:push' %}">Push 메시지 보내기</a></li>
+			<li class="{% block menu_accounts_selected %}{% endblock %}"><a href="{% url 'cms:accounts' %}">정산</a></li>
+			<li><a href="{% url 'cms:logout' %}">Logout</a></li>
+		</ul>
+	</div><!-- menu -->
+
+	<div id="main">
+{% block main %}{% endblock %}
+	</div><!-- main -->
+
+	<div id="footer">
+{% block footer %}{% endblock %}
+	</div><!-- footer -->
+
+</div><!-- container -->
+
+</body>
+
+</html>
+

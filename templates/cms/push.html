@@ -1,0 +1,44 @@
+{% extends 'cms/base.html' %}
+
+{% block menu_push_selected %}now{% endblock %}
+
+{% block js %}
+$(function() {
+	$(document).on("click", "#check_all", function(event) {
+		$("input[name='user_id']").prop("checked", $(this).prop("checked"));
+	});
+});
+{% endblock %}
+
+{% block main %}
+<h1>Push 메시지 보내기</h1>
+
+<form method="post" action="{% url 'cms:push_send' %}">
+	{% csrf_token %}
+	<dl>
+		<dt><label for="title">제목</label></dt>
+		<dd><input type="text" id="title" name="title" required="required" /></dd>
+		<dt><label for="content">내용</label></dt>
+		<dd><textarea id="content" name="content" required="required"></textarea></dd>
+	</dl>
+	<input type="submit" value="보내기" />
+	<table>
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="check_all" /></th>
+				<th>이메일</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in user_list %}
+			<tr>
+				<td><input type="checkbox" name="user_id" value="{{ user.id }}" /></td>
+				<td>{{ user.email }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<input type="submit" value="보내기" />
+</form>
+{% endblock %}
+

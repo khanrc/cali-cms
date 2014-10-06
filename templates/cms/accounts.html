@@ -1,0 +1,36 @@
+{% extends 'cms/base.html' %}
+
+{% block menu_accounts_selected %}now{% endblock %}
+
+{% block header %}
+	<!-- jQuery UI -->
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<!-- jQuery UI CSS -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
+
+	<script>
+		$(function() {
+		$(".date_input").datepicker();
+		});
+	</script>
+{% endblock %}
+
+{% block main %}
+<h1>정산</h1>
+
+<form method="post" action="{% url 'cms:accounts_result' %}">
+	{% csrf_token %}
+	<dl>
+		<dt><label for="date">날짜</label></dt>
+		<dd>Start Date: <input type="text" name="start_date" class="date_input" id="start_date">
+			End Date: <input type="text" name="end_date" class="date_input" id="end_date">
+		</dd>
+		<dt><label>특정문자 제거</label></dt>
+		<dd>
+			<input type="text" name="without" id="without">
+		</dd>
+	</dl>
+	<input type="submit" value="정산" />
+</form>
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends 'cms/base.html' %}
+
+{% block menu_coupon_selected %}now{% endblock %}
+
+{% block main %}
+<h1>쿠폰 발급</h1>
+
+<ol>
+	{% for coupon_id in coupon_id_list %}
+	<li><code>{{ coupon_id }}</code></li>
+	{% endfor %}
+</ol>
+{% endblock %}
+

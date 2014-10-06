@@ -1,0 +1,31 @@
+{% extends 'cms/base.html' %}
+
+{% block menu_accounts_selected %}now{% endblock %}
+
+{% block main %}
+	<h1>정산</h1>
+
+	<ul>
+		<li> {{ start_date }} ~ {{ end_date }} </li>
+		<li> 작업완료 총 {{ orders|length }} 개 (쿠폰 포함)</li>
+	</ul>
+
+	<!-- {{ ret }} -->
+	{% for k, v in ret.items %}
+		<h2> {{k}} </h2>
+		<ul>
+			<li> 실결제 {{v.count}} 개 </li>
+			{% if v.coupon %}
+				<li> 쿠폰 {{v.coupon}} 개 </li>
+			{% endif %}
+		</ul>
+	{% endfor %}
+
+
+	<ol>
+		{% for order in orders %}
+			<li> {{order.last_updated}}, {{ order }}, {{ order.artist }}, {{order.status}}, {{order.is_coupon}} </li>
+		{% endfor %}
+	</ol>
+
+{% endblock %}
